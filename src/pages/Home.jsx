@@ -31,7 +31,7 @@ export default function Home() {
                     isPersonalized = true;
                 } else {
                     // Not logged in → default featured products
-                    url = `${API_BASE}/products?limit=8`;
+                    url = `${API_BASE}/products?limit=8&userId=1`;
                 }
 
                 const res = await axios.get(url);
