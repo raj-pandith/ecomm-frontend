@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import axios from 'axios';
 import { useAuth } from '../context/AuthContext';
+import { JAVA_BASE_URL } from '../API_GATEWAY/Apis';
 
 export default function CheckoutForm({ amount = 0, onSuccess }) {
     const stripe = useStripe();
@@ -31,7 +32,7 @@ export default function CheckoutForm({ amount = 0, onSuccess }) {
         try {
             // Step 1: Create PaymentIntent on backend
             const { data } = await axios.post(
-                'https://ecomm-backend-production-4a0f.up.railway.app/api/payment/create-intent',
+                JAVA_BASE_URL + '/api/payment/create-intent',
                 {
                     amount,
                     userId: user?.id,
@@ -64,7 +65,7 @@ export default function CheckoutForm({ amount = 0, onSuccess }) {
             if (paymentIntent.status === 'succeeded') {
                 try {
                     const response = await axios.post(
-                        'https://ecomm-backend-production-4a0f.up.railway.app/api/payment/complete',
+                        JAVA_BASE_URL + '/api/payment/complete',
                         {
                             userId: user.id,          // real logged-in user id
                             amount: amount            // the actual paid amount

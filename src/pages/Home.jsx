@@ -4,8 +4,9 @@ import axios from 'axios';
 import ProductCard from '../components/ProductCard';
 import SearchBar from '../components/SearchBar';
 import { useAuth } from '../context/AuthContext';
+import { JAVA_BASE_URL } from '../API_GATEWAY/Apis';
 
-const API_BASE = 'https://ecomm-backend-production-4a0f.up.railway.app/api';
+const API_BASE = JAVA_BASE_URL + '/api';
 
 export default function Home() {
     const { user, loading: authLoading } = useAuth();

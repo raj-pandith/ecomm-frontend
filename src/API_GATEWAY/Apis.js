@@ -1,0 +1,1 @@
+export const JAVA_BASE_URL="https://ecomm-backend-production-4a0f.up.railway.app";

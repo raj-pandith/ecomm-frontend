@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { Search } from "lucide-react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { JAVA_BASE_URL } from "../API_GATEWAY/Apis";
 
 export default function SearchBar() {
     const [query, setQuery] = useState("");
@@ -33,7 +34,7 @@ export default function SearchBar() {
         const timer = setTimeout(() => {
             setLoading(true);
             axios
-                .get("https://ecomm-backend-production-4a0f.up.railway.app/api/search", {
+                .get(JAVA_BASE_URL + "/api/search", {
                     params: {
                         query: query.trim(),
                         limit: 6,

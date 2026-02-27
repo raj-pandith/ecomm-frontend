@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import ProductCard from '../../src/components/ProductCard';
 import { useAuth } from '../context/AuthContext';
+import { JAVA_BASE_URL } from '../API_GATEWAY/Apis';
 
 export default function RecommendedProducts({ limit = 6, title = "Recommended for You" }) {
     const { user } = useAuth();
@@ -20,7 +21,7 @@ export default function RecommendedProducts({ limit = 6, title = "Recommended fo
             try {
                 // Step 1: Get recommended product IDs for this user
                 const recRes = await axios.get(
-                    `https://ecomm-backend-production-4a0f.up.railway.app/api/recommendations?userId=${user.id}&limit=${limit}`
+                    JAVA_BASE_URL + `/api/recommendations?userId=${user.id}&limit=${limit}`
                 );
 
                 const recommendedIds = recRes.data; // array of product IDs
@@ -33,7 +34,7 @@ export default function RecommendedProducts({ limit = 6, title = "Recommended fo
 
                 // Step 2: Fetch full product details for those IDs
                 const productsRes = await axios.get(
-                    `https://ecomm-backend-production-4a0f.up.railway.app/api/products?ids=${recommendedIds.join(',')}`
+                    JAVA_BASE_URL + `/api/products?ids=${recommendedIds.join(',')}`
                 );
 
                 setProducts(productsRes.data);

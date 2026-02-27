@@ -3,6 +3,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import ProductCard from '../components/ProductCard';
 import { useAuth } from '../context/AuthContext';
+import { JAVA_BASE_URL } from '../API_GATEWAY/Apis';
 
 export default function Products() {
     const { user, loading: authLoading } = useAuth();
@@ -42,7 +43,7 @@ export default function Products() {
 
             try {
                 const res = await axios.get(
-                    `https://ecomm-backend-production-4a0f.up.railway.app/api/products?userId=${user.id}&pageSize=${itemsPerPage}&page=${currentPage}`
+                    JAVA_BASE_URL + `/api/products?userId=${user.id}&pageSize=${itemsPerPage}&page=${currentPage}`
                 );
                 console.log(res)
 

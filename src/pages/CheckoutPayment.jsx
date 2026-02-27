@@ -4,6 +4,7 @@ import axiosInstance from '../utils/axiosInstance'; // ← Use axiosInstance (wi
 import { useCart } from '../context/CartContext';
 import { useAuth } from '../context/AuthContext';
 import CheckoutForm from '../components/CheckoutForm';
+import { JAVA_BASE_URL } from '../API_GATEWAY/Apis';
 
 export default function CheckoutPayment() {
     const { cart = [], total = 0, clearCart } = useCart();
@@ -50,7 +51,7 @@ export default function CheckoutPayment() {
             console.log('Sending order data to backend:', orderData);
 
             // Save order using axiosInstance (includes Authorization header)
-            const response = await axiosInstance.post('https://ecomm-backend-production-4a0f.up.railway.app/api/orders', orderData);
+            const response = await axiosInstance.post(JAVA_BASE_URL + '/api/orders', orderData);
 
             console.log('Order saved successfully:', response.data);
 

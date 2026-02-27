@@ -4,6 +4,7 @@ import axios from 'axios';
 import ProductCard from '../components/ProductCard';
 import { useCart } from '../context/CartContext';
 import { useAuth } from '../context/AuthContext';
+import { JAVA_BASE_URL } from '../API_GATEWAY/Apis';
 
 export default function ProductDetail() {
     const { id } = useParams();
@@ -44,7 +45,7 @@ export default function ProductDetail() {
             try {
                 // 1. Fetch current product with personalized price
                 const productRes = await axios.get(
-                    `https://ecomm-backend-production-4a0f.up.railway.app/api/products/${id}?userId=${user.id}`
+                    JAVA_BASE_URL + `/api/products/${id}?userId=${user.id}`
                 );
                 setProduct(productRes.data);
                 {
@@ -53,7 +54,7 @@ export default function ProductDetail() {
 
                 // 2. Fetch similar products (also personalized)
                 const similarRes = await axios.get(
-                    `https://ecomm-backend-production-4a0f.up.railway.app/api/products/${id}/similar?userId=${user.id}&limit=8`
+                    JAVA_BASE_URL + `/api/products/${id}/similar?userId=${user.id}&limit=8`
                 );
                 setSimilar(similarRes.data);
             } catch (err) {

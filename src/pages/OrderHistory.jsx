@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
 import axios from 'axios';
+import { JAVA_BASE_URL } from '../API_GATEWAY/Apis';
 
 export default function OrderHistory() {
     const { user } = useAuth();
@@ -10,7 +11,7 @@ export default function OrderHistory() {
     useEffect(() => {
         if (!user?.id) return;
 
-        axios.get(`https://ecomm-backend-production-4a0f.up.railway.app/api/orders/user/${user.id}`)
+        axios.get(JAVA_BASE_URL + `/api/orders/user/${user.id}`)
             .then(res => {
                 setOrders(res.data);
                 setLoading(false);

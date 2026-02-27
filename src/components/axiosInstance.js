@@ -1,8 +1,9 @@
 // src/utils/axiosInstance.js (create if not exists)
 import axios from 'axios';
+import { JAVA_BASE_URL } from '../API_GATEWAY/Apis';
 
 const axiosInstance = axios.create({
-  baseURL: 'https://ecomm-backend-production-4a0f.up.railway.app/',
+  baseURL: JAVA_BASE_URL,
 });
 
 axiosInstance.interceptors.request.use(config => {

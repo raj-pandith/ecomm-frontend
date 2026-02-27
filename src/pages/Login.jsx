@@ -2,6 +2,7 @@ import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useAuth } from '../context/AuthContext';  // make sure path is correct
+import { JAVA_BASE_URL } from '../API_GATEWAY/Apis';
 
 export default function Login() {
     const { register, handleSubmit, formState: { errors } } = useForm();
@@ -10,7 +11,7 @@ export default function Login() {
 
     const onSubmit = async (data) => {
         try {
-            const res = await axios.post('https://ecomm-backend-production-4a0f.up.railway.app/api/auth/login', data);
+            const res = await axios.post(JAVA_BASE_URL + '/api/auth/login', data);
 
             const token = res.data.token;
             const userData = {

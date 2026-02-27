@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import axios from 'axios';
 import { useAuth } from '../../context/AuthContext'; // optional: to restrict to admin
+import { JAVA_BASE_URL } from '../../API_GATEWAY/Apis';
 
 export default function AdminAddProduct() {
     const { user } = useAuth(); // optional: check if admin
@@ -53,7 +54,7 @@ export default function AdminAddProduct() {
                 image: formData.imageUrl.trim(),
             };
 
-            const response = await axios.post('https://ecomm-backend-production-4a0f.up.railway.app/api/admin/products', payload);
+            const response = await axios.post(JAVA_BASE_URL + '/api/admin/products', payload);
 
             if (response.status === 200 || response.status === 201) {
                 setSuccess('Product added successfully!');
