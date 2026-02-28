@@ -9,7 +9,7 @@ export default function ProductCard({ product }) {
             {/* Image placeholder */}
             <div className="aspect-square bg-gray-100 flex items-center justify-center">
                 {/* <span className="text-gray-400 text-lg">Image</span> */}
-                <img src={product.image} alt="" />
+                <img src={product.image} alt="" height={200} width={150} />
             </div>
 
             {/* Info */}
